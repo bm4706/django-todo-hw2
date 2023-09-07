@@ -8,6 +8,20 @@
 </head>
 
 <body>
+    {%if request.user.is_authenticated%}
+    <!-- 로그인 여부 판별 -->
+    <div>{{request.user.username}}</div>
+    <form action="/user/logout/" method="post">
+        {%csrf_token%}
+        <button>로그아웃하기</button>
+    </form>
+    {%else%}
+    <div>
+        <a href="/user/login/">로그인</a>
+        <a href="/user/signin/">회원가입</a>
+    </div>
+
+    {%endif%}
     <div>
         <a href="/todo/create/">
             <button>글 작성하기</button>
