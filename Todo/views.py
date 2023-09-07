@@ -51,3 +51,13 @@ def read(request, todo_id):  # db에 todo_id를 불러오려고함
     return render(request, "todo/detail.html", context, )
 
     # return HttpResponse(todo.content)
+
+
+@csrf_exempt
+def delete(request, todo_id):
+    if request.method == "POST":  # post만 가능하도록 해야함
+        todo = Todo.objects.get(id=todo_id)
+        todo.delete()
+        return redirect("/todo/index/")
+    else:
+        return HttpResponse("잘못적음!")
