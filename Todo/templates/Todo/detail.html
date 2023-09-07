@@ -8,10 +8,15 @@
 </head>
 
 <body>
-    <h1>{{todo.content}}</h1>
-    <!-- 게시글의 내용 보여주는 페이지 -->
-    <p>생성 시간 : {{todo.created_at}}</p>
-    <p>수정 시간 : {{todo.updated_at}}</p>
+    <div>
+        <h1>{{todo.content}}</h1>
+        <!-- 게시글의 내용 보여주는 페이지 -->
+        <p>생성 시간 : {{todo.created_at}}</p>
+        <p>수정 시간 : {{todo.updated_at}}</p>
+        <a href="/todo/index/">
+            <button>뒤돌아가기</button>
+        </a>
+    </div>
 </body>
 
 </html>

@@ -47,6 +47,7 @@ def read(request, todo_id):  # db에 todo_id를 불러오려고함
     context = {
         "todo": todo
     }
-    return render(request, "todo/detail.html", context)
+    # back_url = reverse('index')
+    return render(request, "todo/detail.html", context, )
 
     # return HttpResponse(todo.content)
