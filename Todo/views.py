@@ -69,9 +69,19 @@ def delete(request, todo_id):
 @csrf_exempt
 def update(request, todo_id):
     if request.method == "POST":
+        todo = Todo.objects.get(id=todo_id)
+        # 받아온 변경된 것들의 값을 다시 todo에 넣어주는 행위
+        todo.content = request.POST["content"]
+        todo.title = request.POST["title"]
 
-        return redirect("/todo/index")
+        todo.save()  # 이를 db에 저장시키는 역할
+        return redirect(f"/todo/read/{todo_id}/")  # 수정했으니까 다시 글로 이동해야함
     elif request.method == "GET":
-        return render(request, "todo/update.html")
+        todo = Todo.objects.get(id=todo_id)
+        context = {
+            "todo": todo
+        }
+        # context를 넣는 이유는 내가 수정할때 글을 확인해야해서
+        return render(request, "todo/update.html", context)
     else:
         return HttpResponse("잘못적음!")

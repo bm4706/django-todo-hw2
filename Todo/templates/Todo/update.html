@@ -18,8 +18,10 @@
     <h1>여기서 수정해주세요</h1>
     <form action="/todo/update/{{todo.id}}/" method="post">
         {%csrf_token%}
-        <p>제목</p><input type="text" name="title" id="title">
-        <p>내용</p><input type="text" name="content" id="content">
+        <h1>{{todo.id}} 님이 작성하신 글</h1>
+        <!-- value를 넣는거는 수정하기때 내가 무엇을썻는지 나와야 하므로 -->
+        <p>제목</p><input type="text" name="title" id="title" value="{{todo.title}}">
+        <p>내용</p><input type="text" name="content" id="content" value="{{todo.content}}">
         <button type="submit">제출</button>
     </form>
 
