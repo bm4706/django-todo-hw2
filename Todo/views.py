@@ -23,10 +23,10 @@ def create(request):
     if request.method == "POST":
         title = request.POST.get("title")
         content = request.POST.get("content")
-        # user = request.user  # 현재 로그인한 사용자를 가져옵니다.
+        user = request.user  # 이제 유저를 추가해줘야함
 
         # Todo 객체를 생성하고 데이터베이스에 저장합니다.
-        Todo.objects.create(title=title, content=content, )
+        Todo.objects.create(title=title, content=content, user=user)
         # a.save()
         return redirect("/todo/index")
     elif request.method == "GET":

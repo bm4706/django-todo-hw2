@@ -2,7 +2,9 @@ from django.db import models
 
 
 class Todo(models.Model):
-    # user = models.ForeignKey(        "user.User", verbose_name="작성자", on_delete=models.CASCADE)
+    # user 추가
+    user = models.ForeignKey(
+        "user.User", verbose_name="작성자", on_delete=models.CASCADE)
 
     title = models.CharField("제목", max_length=20, default="제목!")
     content = models.TextField("내용")
