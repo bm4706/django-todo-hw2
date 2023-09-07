@@ -54,10 +54,12 @@ def read(request, todo_id):  # db에 todo_id를 불러오려고함
 
 
 @csrf_exempt
+# 삭제하기 기능
 def delete(request, todo_id):
     if request.method == "POST":  # post만 가능하도록 해야함
         todo = Todo.objects.get(id=todo_id)
         todo.delete()
+        # redirect를 안하고 render로 하면 주소가 점점 뒤로 쌓이게됨
         return redirect("/todo/index/")
     else:
         return HttpResponse("잘못적음!")
