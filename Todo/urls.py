@@ -10,4 +10,5 @@ urlpatterns = [
     path('read/<int:todo_id>/', views.read),  # 무슨 글을썼는지 보여주기 위함
     path('receive/', views.receive, name='receive'),
     path('delete/<int:todo_id>/', views.delete, name='delete'),
+    path('update/<int:todo_id>/', views.update, name='update'),
 ]

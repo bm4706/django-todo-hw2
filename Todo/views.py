@@ -63,3 +63,15 @@ def delete(request, todo_id):
         return redirect("/todo/index/")
     else:
         return HttpResponse("잘못적음!")
+
+
+# 수정하기 기능
+@csrf_exempt
+def update(request, todo_id):
+    if request.method == "POST":
+
+        return redirect("/todo/index")
+    elif request.method == "GET":
+        return render(request, "todo/update.html")
+    else:
+        return HttpResponse("잘못적음!")
