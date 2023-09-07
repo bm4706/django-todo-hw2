@@ -38,5 +38,5 @@ def create(request):
 def receive(request):
     title = request.POST.get('title')
     content = request.POST.get('content')
-    return HttpResponse('ok')
+    return HttpResponse('작성 완료!')
 # Create your views here.

@@ -5,7 +5,7 @@ from django.urls import include, path
 
 
 urlpatterns = [
-    path('', views.index, name="index"),
+    path('index/', views.index, name="index"),
     path('create/', views.create),
-    path('receive/', views.receive, name='receive'),
+    # path('receive/', views.receive, name='receive'),
 ]
