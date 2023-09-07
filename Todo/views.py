@@ -19,7 +19,10 @@ def index(request):
 
 
 @csrf_exempt
+@login_required(login_url="/user/login")
+# django에서는 아래 굳이 안쓰고 이러한 기능을 만듬
 def create(request):
+    # if request.user.is_authenticated:  # 로그인 한 상태인지 여부 판별
     if request.method == "POST":
         title = request.POST.get("title")
         content = request.POST.get("content")
@@ -33,6 +36,8 @@ def create(request):
         return render(request, "todo/create.html")
     else:
         return HttpResponse("잘못적음!")
+    # else:
+    #     return redirect("/user/login/")
 
 
 def receive(request):
