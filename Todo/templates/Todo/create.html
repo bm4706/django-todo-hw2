@@ -17,8 +17,8 @@
     </div> -->
     <form action="/todo/receive/" method="post">
         {%csrf_token%}
-        <p>제목</p><input type="text" name="title">
-        <p>내용</p><input type="text" name="content">
+        <p>제목</p><input type="text" name="title" id="title">
+        <p>내용</p><input type="text" name="content" id="content">
         <button type="submit">제출</button>
     </form>
 
