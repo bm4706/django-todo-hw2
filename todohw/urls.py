@@ -21,4 +21,5 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/', include("Todo.urls")),  # todo앱 연결
+    path('user/', include("user.urls")),  # user앱 연결
 ]
