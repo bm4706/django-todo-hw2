@@ -5,7 +5,7 @@ from .models import Todo
 from django.views.decorators.csrf import csrf_exempt
 
 
-@login_required
+# @login_required
 def index(request):
     if request.method == "GET":
         todos = Todo.objects.all()  # read
@@ -26,9 +26,9 @@ def create(request):
         # user = request.user  # 현재 로그인한 사용자를 가져옵니다.
 
         # Todo 객체를 생성하고 데이터베이스에 저장합니다.
-        a = Todo.objects.create(title=title, content=content,)
-        a.save()
-        return redirect("/todo")
+        Todo.objects.create(title=title, content=content, )
+        # a.save()
+        return redirect("/todo/index")
     elif request.method == "GET":
         return render(request, "todo/create.html")
     else:
@@ -40,3 +40,13 @@ def receive(request):
     content = request.POST.get('content')
     return HttpResponse('작성 완료!')
 # Create your views here.
+
+
+def read(request, todo_id):  # db에 todo_id를 불러오려고함
+    todo = Todo.objects.get(id=todo_id)
+    context = {
+        "todo": todo
+    }
+    return render(request, "todo/detail.html", context)
+
+    # return HttpResponse(todo.content)

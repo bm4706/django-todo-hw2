@@ -15,7 +15,7 @@
         {% for todo in todos %}
         <!-- views.py에서 index함수에 있는 todos를 가져오는거 -->
         <!-- 이제 작성한 글들의 제목은 index 주소에서 보여줌 -->
-        <a href="/todo/{{todo.id}}">
+        <a href="/todo/read/{{todo.id}}">
             <li>{{ todo.title }}</li>
 
         </a>
