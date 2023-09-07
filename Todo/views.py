@@ -63,9 +63,12 @@ def read(request, todo_id):  # db에 todo_id를 불러오려고함
 def delete(request, todo_id):
     if request.method == "POST":  # post만 가능하도록 해야함
         todo = Todo.objects.get(id=todo_id)
-        todo.delete()
-        # redirect를 안하고 render로 하면 주소가 점점 뒤로 쌓이게됨
-        return redirect("/todo/index/")
+        if request.user == todo.user:  # 다른사람이 우회에서 조작가능성을 막아줌
+            todo.delete()
+            # redirect를 안하고 render로 하면 주소가 점점 뒤로 쌓이게됨
+            return redirect("/todo/index/")
+        else:
+            return HttpResponse("권한없음!")
     else:
         return HttpResponse("잘못적음!")
 
@@ -75,12 +78,15 @@ def delete(request, todo_id):
 def update(request, todo_id):
     if request.method == "POST":
         todo = Todo.objects.get(id=todo_id)
-        # 받아온 변경된 것들의 값을 다시 todo에 넣어주는 행위
-        todo.content = request.POST["content"]
-        todo.title = request.POST["title"]
+        if request.user == todo.user:
+            # 받아온 변경된 것들의 값을 다시 todo에 넣어주는 행위
+            todo.content = request.POST["content"]
+            todo.title = request.POST["title"]
 
-        todo.save()  # 이를 db에 저장시키는 역할
-        return redirect(f"/todo/read/{todo_id}/")  # 수정했으니까 다시 글로 이동해야함
+            todo.save()  # 이를 db에 저장시키는 역할
+            return redirect(f"/todo/read/{todo_id}/")  # 수정했으니까 다시 글로 이동해야함
+        else:
+            return HttpResponse("권한없음!")
     elif request.method == "GET":
         todo = Todo.objects.get(id=todo_id)
         context = {
